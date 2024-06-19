@@ -1,0 +1,12 @@
+Install docker on EC2 instance
+create EC2 instance and login to EC2
+
+  1. sudo apt update -y    : which update apt module packages
+  2. sudo apt install docker.io -y  : installing docker using apt module
+  3. sudo systemctl docker status  :  to verifying docker is running or not
+
+To verify docker is ready or not
+  3. docker run hello-world
+Change the docker run permission from root user to ubuntu user run below cmd. NOTE: by default docker run on root user.
+  4.sudo usermod -aG docker ubuntu    : it will add ubuntu user to the docker group list
+    
