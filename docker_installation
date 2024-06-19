@@ -3,7 +3,7 @@ create EC2 instance and login to EC2
 
   1. sudo apt update -y    : which update apt module packages
   2. sudo apt install docker.io -y  : installing docker using apt module
-  3. sudo systemctl docker status  :  to verifying docker is running or not
+  3. sudo systemctl status docker  :  to verifying docker is running or not
 
 To verify docker is ready or not
   3. docker run hello-world
