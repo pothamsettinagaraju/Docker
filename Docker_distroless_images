@@ -1,0 +1,40 @@
+For reducing the image size we can do multi stage dockerfile and we can use distroless images
+
+if we search distroless images for specific language we can get a lot of images
+
+ex: go language
+
+Docker file:
+###########################################
+# BASE IMAGE
+###########################################
+
+FROM ubuntu AS build
+
+RUN apt-get update && apt-get install -y golang-go
+
+ENV GO111MODULE=off
+
+COPY . .
+
+RUN CGO_ENABLED=0 go build -o /app .
+
+############################################
+# HERE STARTS THE MAGIC OF MULTI STAGE BUILD
+############################################
+
+FROM scratch
+
+# Copy the compiled binary from the build stage
+COPY --from=build /app /app
+
+# Set the entrypoint for the container to run the binary
+ENTRYPOINT ["/app"]
+
+
+Calculator.go
+https://github.com/iam-veeramalla/Docker-Zero-to-Hero/blob/main/examples/golang-multi-stage-docker-build/calculator.go
+
+In Dockerfile we have 2 stages first stage to build and second stage is to  run the above build images using distroless image
+Here distroless image for python is scratch
+
