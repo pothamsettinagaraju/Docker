@@ -9,4 +9,48 @@ To verify docker is ready or not
   3. docker run hello-world
 Change the docker run permission from root user to ubuntu user run below cmd. NOTE: by default docker run on root user.
   4.sudo usermod -aG docker ubuntu    : it will add ubuntu user to the docker group list
-    
+
+Create a any programming file and also docker file and build it and run it and push it to docker registry.
+
+1. Create a program file
+vi app.py
+
+print("Hello Naga")
+
+2. Create a docker file
+vi Dockerfile
+
+FROM ubuntu:latest
+# Set the working directory in the image
+WORKDIR /app
+# Copy the files from the host file system to the image file system
+COPY . /app
+# Install the necessary packages
+RUN apt-get update && apt-get install -y python3 python3-pip
+# Set environment variables
+ENV NAME World
+# Run a command to start the application
+CMD ["python3", "app.py"]
+
+3. Build docker image
+docker build -t docker8072608/my-first-docker-image:latest .
+
+-t : tagging the name to image
+tag name: docker8072608/my-first-docker-image
+latest : version
+. : build current directory docker file
+
+4. Run docker image
+docker run -it docker8072608/my-first-docker-image:latest
+
+-it : it will run iteratively
+above cmd will run docker image and gives output
+
+5. Push docker image to docker registry
+First we must have docker registry account and must know userid for docker registry
+First we have to login to docker, we need to provide docker userid, password
+docker login
+
+Push image
+docker push docker8072608/my-first-docker-image:latest
+ 
