@@ -1,0 +1,8 @@
+Docker Networking are 3 ways
+
+1. Bridge Networking (Virtual bridge) - default and we can create custom bridge networks, using bridge NW, we can logically isolate the host and containers
+2. Host Networking  - same network use for HOST machine and container ->that's why it's not secure
+3. Overlay Networking  - Complicated becasue it used k8s and docker swarm
+
+How to list docker networks
+docker network ls
